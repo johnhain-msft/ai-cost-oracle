@@ -1,0 +1,18 @@
+[project]
+name = "cost-oracle"
+version = "1.0.0"
+description = "Predict the cost of an AI request before you spend it — token-based for Claude, AIC-based for GitHub Copilot."
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "John Hain" }]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "unit: fast, isolated unit tests",
+    "integration: tests that exercise several modules together",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

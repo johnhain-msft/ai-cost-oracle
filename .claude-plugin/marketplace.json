@@ -1,0 +1,13 @@
+{
+  "name": "ai-cost-oracle",
+  "owner": {
+    "name": "John Hain"
+  },
+  "plugins": [
+    {
+      "name": "cost-oracle",
+      "source": "./",
+      "description": "Predict the cost of an AI request before you spend it — token-based USD estimates for Claude, AIC estimates for GitHub Copilot."
+    }
+  ]
+}

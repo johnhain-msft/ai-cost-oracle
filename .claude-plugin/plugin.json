@@ -1,0 +1,17 @@
+{
+  "name": "cost-oracle",
+  "description": "Predict the cost of an AI request before you spend it — token-based USD estimates for Claude, AIC estimates for GitHub Copilot, trained on your own session history with a feedback loop.",
+  "version": "1.0.0",
+  "author": {
+    "name": "John Hain"
+  },
+  "keywords": [
+    "cost",
+    "estimation",
+    "budget",
+    "claude",
+    "copilot",
+    "tokens",
+    "aic"
+  ]
+}
