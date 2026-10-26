@@ -2,8 +2,8 @@
 
 **Predict the cost of an AI request before you spend it.**
 
-A Claude Code agent + skill that estimates what a task will cost — in **USD for
-Claude** (token-based, priced at published API rates) and in **AIC for GitHub
+A skill for GitHub Copilot CLI and Claude Code that estimates what a task will
+cost — in **USD for Claude** (token-based, priced at published API rates) and in **AIC for GitHub
 Copilot** (AI credits, read from Copilot's own per-request records) — trained
 on _your_ session history, with a feedback loop that makes it more accurate
 over time.
@@ -68,21 +68,35 @@ _Animated replay of a real session — full unedited output in
 
 Requires Python 3.10+ (standard library only — no pip installs).
 
-### Option A — Claude Code plugin (recommended)
+### Option A — GitHub Copilot CLI plugin (recommended)
+
+Run these commands in GitHub Copilot CLI. They also work in Claude Code:
 
 ```
 /plugin marketplace add johnhain-msft/ai-cost-oracle
 /plugin install cost-oracle@ai-cost-oracle
 ```
 
-### Option B — manual install
+GitHub documents these commands in
+[Finding and installing plugins for GitHub Copilot CLI](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins-finding-installing).
+
+Start a new session in your chosen client, then run the training round once:
+
+```
+/cost-oracle train
+```
+
+### Option B — manual install (Claude Code only)
+
+The Bash installer copies the agent and skill into `~/.claude`; it does not
+configure GitHub Copilot CLI. For Copilot CLI, use Option A.
 
 ```bash
 git clone https://github.com/johnhain-msft/ai-cost-oracle.git
 cd ai-cost-oracle && ./install.sh
 ```
 
-Either way, restart Claude Code, then run the training round once:
+Start a new Claude Code session, then run:
 
 ```
 /cost-oracle train
@@ -90,7 +104,7 @@ Either way, restart Claude Code, then run the training round once:
 
 ## Use it
 
-### Conversationally (skill + agent)
+### Conversationally (skill)
 
 ```
 How much will it cost to add OAuth login to my Next.js app on Opus?
@@ -98,8 +112,8 @@ Estimate refactoring the payment service in Copilot — I have 1,000 AIC left.
 That OAuth estimate? It actually cost $11.42.
 ```
 
-You can also constrain **what the estimate itself may cost and which model
-produces it** — the skill delegates to the `cost-oracle` agent with your model
+In Claude Code, you can also constrain **what the estimate itself may cost and
+which model produces it** — the skill delegates to the `cost-oracle` agent with your model
 choice and holds it to budget mode (status check + one estimate call, no
 exploration):
 
@@ -109,8 +123,10 @@ Estimate this migration, but spend at most $0.05 on the estimate and use Haiku.
 
 ### Directly (CLI)
 
+From a local clone of this repository (Bash, independent of either client):
+
 ```bash
-alias cost-oracle='python3 ~/.claude/skills/cost-oracle/scripts/cli.py'
+alias cost-oracle='python3 skills/cost-oracle/scripts/cli.py'
 
 cost-oracle train                      # (re)build the baseline corpus
 cost-oracle estimate --provider claude --model claude-opus-5 \
