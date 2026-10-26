@@ -13,8 +13,8 @@ session history.
 
 Find `cli.py` by checking these locations in order (use the first that exists):
 
-1. `~/.claude/skills/cost-oracle/scripts/cli.py` (manual install)
-2. A glob of `~/.claude/plugins/**/skills/cost-oracle/scripts/cli.py` (plugin install)
+1. `~/.copilot/skills/cost-oracle/scripts/cli.py` or `~/.claude/skills/cost-oracle/scripts/cli.py` (manual install)
+2. A glob of `~/.copilot/installed-plugins/**/skills/cost-oracle/scripts/cli.py` or `~/.claude/plugins/**/skills/cost-oracle/scripts/cli.py` (plugin install)
 3. `./skills/cost-oracle/scripts/cli.py` relative to the working directory (repo checkout)
 
 Run every command as: `python3 <path-to-cli.py> <subcommand> ...`
