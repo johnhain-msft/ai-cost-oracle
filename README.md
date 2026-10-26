@@ -2,11 +2,11 @@
 
 **Predict the cost of an AI request before you spend it.**
 
-A Claude Code agent + skill that estimates what a task will cost — in **USD for
-Claude** (token-based, priced at published API rates) and in **AIC for GitHub
-Copilot** (AI credits, read from Copilot's own per-request records) — trained
-on _your_ session history, with a feedback loop that makes it more accurate
-over time.
+A GitHub Copilot CLI agent + skill that estimates what a task will
+cost — in **AIC for GitHub Copilot** (AI credits, read from Copilot's own
+per-request records) and in **USD for Claude** (token-based, priced at
+published API rates) — trained on _your_ session history, with a feedback loop
+that makes it more accurate over time.
 
 ![tests](https://img.shields.io/badge/tests-30%20passing-brightgreen)
 ![python](https://img.shields.io/badge/python-3.10%2B-blue)
@@ -68,7 +68,7 @@ _Animated replay of a real session — full unedited output in
 
 Requires Python 3.10+ (standard library only — no pip installs).
 
-### Option A — Claude Code plugin (recommended)
+### Option A — GitHub Copilot CLI plugin (recommended)
 
 ```
 /plugin marketplace add johnhain-msft/ai-cost-oracle
@@ -82,7 +82,7 @@ git clone https://github.com/johnhain-msft/ai-cost-oracle.git
 cd ai-cost-oracle && ./install.sh
 ```
 
-Either way, restart Claude Code, then run the training round once:
+Either way, start a new GitHub Copilot CLI session, then run the training round once:
 
 ```
 /cost-oracle train
@@ -110,7 +110,7 @@ Estimate this migration, but spend at most $0.05 on the estimate and use Haiku.
 ### Directly (CLI)
 
 ```bash
-alias cost-oracle='python3 ~/.claude/skills/cost-oracle/scripts/cli.py'
+alias cost-oracle='python3 ~/.copilot/skills/cost-oracle/scripts/cli.py'
 
 cost-oracle train                      # (re)build the baseline corpus
 cost-oracle estimate --provider claude --model claude-opus-5 \
